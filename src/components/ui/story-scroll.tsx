@@ -11,20 +11,25 @@ function cx(...parts: Array<string | undefined | false | null>): string {
   return parts.filter(Boolean).join(' ');
 }
 
+// 1. FlowSectionProps me id ko allow kiya gaya hai
 export interface FlowSectionProps {
+  id?: string; 
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
   'aria-label'?: string;
 }
 
+// 2. FlowSection component me id ko lekar use <section> tag par laga diya hai
 export const FlowSection: React.FC<FlowSectionProps> = ({
+  id,
   className,
   style = {},
   children,
   'aria-label': ariaLabel,
 }) => (
   <section
+    id={id}
     data-flow-section
     aria-label={ariaLabel}
     className={cx('relative min-h-screen w-full overflow-hidden', className)}
